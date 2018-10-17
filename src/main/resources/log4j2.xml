@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Properties>
+        <Property name="basePath">logs</Property>
+        <Property name="logLevelError">error</Property>
+        <Property name="logLevelDebug">debug</Property>
+        <Property name="logLevelInfo">info</Property>
+        <Property name="loggingPattern">%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %l -
+            %msg%n}{FATAL=magenta, ERROR=red, WARN=yellow, INFO=cyan, DEBUG=orange, TRACE=blue}
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="fileLogger" fileName="${basePath}/vlingo-demo.log"
+                     filePattern="${basePath}/vlingo-demo-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>${loggingPattern}</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${loggingPattern}"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="${logLevelDebug}" additivity="false">
+            <appender-ref ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
