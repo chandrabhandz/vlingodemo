@@ -10,8 +10,6 @@ import com.google.common.collect.Maps;
 import io.vlingo.actors.Definition;
 import io.vlingo.actors.World;
 import io.vlingo.actors.testkit.TestUntil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import java.util.Map;
@@ -21,8 +19,6 @@ import java.util.Map;
  * Test for Inventory and Order placed
  */
 public class InventoryOrdersTest {
-
-    private static final Logger LOGGER = LogManager.getLogger(InventoryOrdersTest.class);
 
     private static final String WORLD_NAME = "store";
 

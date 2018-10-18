@@ -5,8 +5,6 @@ import io.vlingo.actors.Actor;
 import io.vlingo.actors.Definition;
 import io.vlingo.actors.World;
 import io.vlingo.actors.testkit.TestUntil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
  * @author Chandrabhan Kumhar
@@ -14,7 +12,6 @@ import org.apache.logging.log4j.Logger;
  */
 public class OrderRouterActor extends Actor implements OrderRouter {
 
-    private static final Logger LOGGER = LogManager.getLogger(OrderRouterActor.class);
     private static final String TYPE_ABC = "TypeABC";
     private static final String TYPE_XYZ = "TypeXYZ";
 
@@ -30,6 +27,7 @@ public class OrderRouterActor extends Actor implements OrderRouter {
 
     /**
      * Routes order on the basis of type of order specified
+     *
      * @param orderPlaced {@link OrderPlaced}
      */
     @Override
@@ -40,7 +38,7 @@ public class OrderRouterActor extends Actor implements OrderRouter {
         } else if (orderPlaced.getOrder().getType().contains(TYPE_XYZ)) {
             inventorySystemX.handleOrder(orderPlaced.getOrder());
         } else {
-            LOGGER.warn("OrderRouter: received unexpected message");
+            logger().log("OrderRouter: received unexpected message");
         }
         this.testUntil.happened();
     }
